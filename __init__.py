@@ -49,16 +49,12 @@ if "bpy" not in locals():
     from . import panels
     from . import operators
     from . import properties
-    from . import updater_ops
-    from . import updater
 else:
     import importlib
     importlib.reload(core)
     importlib.reload(panels)
     importlib.reload(operators)
     importlib.reload(properties)
-    importlib.reload(updater_ops)
-    importlib.reload(updater)
 
 
 # List of all buttons and panels
@@ -67,7 +63,6 @@ classes = [  # These panels will only be loaded when the user is logged in
     panels.objects.ObjectsPanel,
     panels.command_api.CommandPanel,
     panels.retargeting.RetargetingPanel,
-    panels.updater.UpdaterPanel,
     panels.info.InfoPanel,
 ]
 classes_always_enable = [  # These non-panels will always be loaded, all non-panel ui should go in here
@@ -129,9 +124,6 @@ def register():
     # Check for unsupported Blender versions
     check_unsupported_blender_versions()
 
-    # Register updater and check for Rokoko Studio Live updates
-    updater_ops.register(bl_info, beta_branch)
-
     for cls in classes:
         bpy.utils.register_class(cls)
     for cls in classes_always_enable:
@@ -154,9 +146,6 @@ def register():
 
 def unregister():
     print("### Unloading Rokoko Studio Live for Blender...")
-
-    # Unregister updater
-    updater_ops.unregister()
 
     # Shut down receiver if the plugin is disabled while it is running
     if operators.receiver.receiver_enabled:
