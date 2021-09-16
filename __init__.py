@@ -70,18 +70,7 @@ classes = [  # These panels will only be loaded when the user is logged in
     panels.updater.UpdaterPanel,
     panels.info.InfoPanel,
 ]
-classes_login = [  # These panels will only be loaded when the user is logged out
-    panels.login.LoginPanel,
-    panels.updater.UpdaterPanel,
-    panels.info.InfoPanel,
-]
 classes_always_enable = [  # These non-panels will always be loaded, all non-panel ui should go in here
-    operators.login.LoginButton,
-    operators.login.RegisterButton,
-    operators.login.ShowPassword,
-    operators.login.LogoutButton,
-    operators.login.InstallMissingLibsPopup,
-    operators.login.InstallLibsButtonButton,
     operators.receiver.ReceiverStart,
     operators.receiver.ReceiverStop,
     operators.recorder.RecorderStart,
@@ -143,16 +132,8 @@ def register():
     # Register updater and check for Rokoko Studio Live updates
     updater_ops.register(bl_info, beta_branch)
 
-    # Check if the user is logged in, show the login panel if not
-    logged_in = core.login.login_from_cache(classes, classes_login)
-
-    # Register classes
-    if logged_in:
-        for cls in classes:
-            bpy.utils.register_class(cls)
-    else:
-        for cls in classes_login:
-            bpy.utils.register_class(cls)
+    for cls in classes:
+        bpy.utils.register_class(cls)
     for cls in classes_always_enable:
         bpy.utils.register_class(cls)
 
@@ -182,7 +163,7 @@ def unregister():
         operators.receiver.ReceiverStart.force_disable()
 
     # Unregister all classes
-    for cls in reversed(classes_login + classes + classes_always_enable):
+    for cls in reversed(classes + classes_always_enable):
         try:
             bpy.utils.unregister_class(cls)
         except RuntimeError:

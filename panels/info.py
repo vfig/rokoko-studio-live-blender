@@ -4,8 +4,6 @@ from .main import ToolPanel, separator
 from .. import updater
 from ..operators import info
 from ..core.icon_manager import Icons
-from ..core import login
-from ..operators.login import LogoutButton
 
 
 class InfoPanel(ToolPanel, bpy.types.Panel):
@@ -41,17 +39,3 @@ class InfoPanel(ToolPanel, bpy.types.Panel):
         row.operator(info.DocumentationButton.bl_idname)
         row = col.row(align=True)
         row.operator(info.ForumButton.bl_idname)
-
-        # If there is no email, the user is not logged in yet
-        if not login.logged_in_email:
-            return
-
-        separator(layout, 0.1)
-        row = layout.row(align=True)
-        row.label(text='Rokoko ID:')
-        row.scale_y = 0.6
-        row = layout.row(align=True)
-        row.scale_y = 0.3
-        row.label(text=login.logged_in_email)
-        row = layout.row(align=True)
-        row.operator(LogoutButton.bl_idname)

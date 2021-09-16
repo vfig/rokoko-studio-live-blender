@@ -17,7 +17,7 @@ This plugin lets you stream your animation data from Rokoko Studio directly into
     - Props data
 - Control Rokoko Studio from within Blender
 - Easily retarget motion capture animations
- 
+
 ---
 
 ## Getting Started for Streaming
@@ -27,7 +27,7 @@ The character in Blender has to be in T-pose:
 
   <img src="https://i.imgur.com/p4uVZBx.png" height="450"/>
 
-**For SmartGloves:** Make sure that the character's hands and fingers are posed as close as possible to the following pose to get the best 
+**For SmartGloves:** Make sure that the character's hands and fingers are posed as close as possible to the following pose to get the best
 possible retargeting of finger animation. All fingers should be straight and the thumb should be rotated 45 degrees away from the other fingers.
 
   <img src="https://i.imgur.com/9I13bHI.png"/>
@@ -102,8 +102,11 @@ In order to retarget an animation in Blender you will need to do the following:
    [<img src="https://img.youtube.com/vi/Od8Ecr70A4Q/maxresdefault.jpg" width="50%">](https://youtu.be/Od8Ecr70A4Q)
 
 ---
- 
+
 ## Changelog
+
+#### 1.3.0.1 (unofficial)
+- Removed login functionality and requirement
 
 #### 1.3.0
 - Added support for Blender 2.93
@@ -116,7 +119,7 @@ In order to retarget an animation in Blender you will need to do the following:
 #### 1.2.0
 - Added support for the new [Rokoko Smartgloves](https://www.rokoko.com/products/smartgloves)
 - Fixed an issue with the auto-updater which caused updates to fail
- 
+
 #### 1.1.1
 - Added Retargeting panel
     - This allows you to easily retarget any animation from one character to another
